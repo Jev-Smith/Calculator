@@ -57,10 +57,21 @@ body, .screen, .button {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  overflow: hidden;
 }
 
 .container .screen .screen-text {
   margin-right: .5em;
+}
+
+.container .screen .insertion-point {
+  -webkit-animation-name: blink;
+          animation-name: blink;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  font-weight: 700;
 }
 
 .container .button {
@@ -84,5 +95,23 @@ body, .screen, .button {
   -ms-grid-row: 5;
   -ms-grid-row-span: 2;
   grid-row: 5 / span 2;
+}
+
+@-webkit-keyframes blink {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=main.css.map */
