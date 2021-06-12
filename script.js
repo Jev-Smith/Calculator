@@ -4,21 +4,38 @@ const screenText = document.querySelector(".screen-text");
 const buttons = document.querySelectorAll(".button");
 
 let screenTextValues = "";
-
-function toggleBlinkingEffect(){
-    
-}
+let slicedString = "";
 
 function updateScreen(buttonValue){
-    if(buttonValue == "AC" || buttonValue == "C"){
-        screenTextValues = "";
-        screenText.innerText = "|";
-    }
-    else{
-        screenTextValues += buttonValue;
-        screenText.innerText = screenTextValues;
+
+    switch(buttonValue){
+        case "AC":
+            screenTextValues ="";
+            screenText.innerText = "|";
+            break;
+
+        case "C":
+            slicedString = screenTextValues.slice(0, -1);
+
+            if(slicedString == ""){
+                slicedString = "|";
+            }
+
+            screenTextValues = slicedString;
+            screenText.innerText = screenTextValues;
+            break;
+        
+        default:
+            //Ensures that the vertical bar does not stay in front of the text
+            if(screenTextValues == "|"){
+                screenTextValues = "";
+            }
+            
+            screenTextValues += buttonValue;
+            screenText.innerText = screenTextValues;
     }
 }
+
 
 function addListener(button){
     button.addEventListener("click", function(){
@@ -27,6 +44,7 @@ function addListener(button){
     })
 }
 
+//Adds an eventListener to each button
 buttons.forEach(val => {
     addListener(val);
 });

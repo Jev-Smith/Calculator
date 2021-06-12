@@ -1,4 +1,5 @@
 @import "_resets";
+@import "_variables";
 
 body{
     height: 100vh;    
@@ -13,19 +14,19 @@ body, .screen, .button{
 
 .container{
     background: #0000ff;
-    max-height: 600px;
-    min-height: 600px;
-    height: 600px;
-    max-width: 400px;
-    min-width: 400px;
-    width: 400px;
-    padding: .5em;
+    max-height: $height;
+    min-height: $height;
+    height: $height;
+    max-width: $width;
+    min-width: $width;
+    width: $width;
+    padding: $spacing;
 
     .inner-container{
         display: grid;
         grid-template-columns: auto auto auto auto;
-        column-gap: .1em;
-        row-gap: .1em;
+        column-gap: $gap;
+        row-gap: $gap;
         width: 100%;
         height: 100%;
     }
@@ -33,13 +34,14 @@ body, .screen, .button{
     .screen{
         background: #fff;
         grid-column: 1 / span 4;
-        margin-bottom: .5em; 
+        margin-bottom: $margin-spacing; 
         align-items: center;
         justify-content: flex-end;
         overflow: hidden; 
+        font-size: 2.5rem;
 
         .screen-text{
-            margin-right: .5em;
+            margin-right: $margin-spacing;
         }
 
         .insertion-point{
