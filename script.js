@@ -12,6 +12,7 @@ function updateScreen(buttonValue){
         case "AC":
             screenTextValues ="";
             screenText.innerText = "|";
+            toggleBlinkingEffect();
             break;
 
         case "C":
@@ -23,6 +24,7 @@ function updateScreen(buttonValue){
 
             screenTextValues = slicedString;
             screenText.innerText = screenTextValues;
+            toggleBlinkingEffect();
             break;
         
         default:
@@ -33,9 +35,17 @@ function updateScreen(buttonValue){
             
             screenTextValues += buttonValue;
             screenText.innerText = screenTextValues;
+            toggleBlinkingEffect();
     }
 }
 
+function toggleBlinkingEffect(){
+    if(screenText.innerText == "|"){
+        screenText.classList.add("insertion-point");
+    }else{
+        screenText.classList.remove("insertion-point");
+    }
+}
 
 function addListener(button){
     button.addEventListener("click", function(){
