@@ -6,6 +6,8 @@ const buttons = document.querySelectorAll(".button");
 let screenTextValues = "";
 let slicedString = "";
 let tempString = "";
+let charArray = ["÷", "×", "−", "+"];
+let charArray2 = ["÷", "×", "+"];
 
 //Adds an eventListener to each button
 buttons.forEach(button => {
@@ -33,6 +35,15 @@ function updateScreen(buttonValue){
             break;
 
         case "C":
+            let secondToLastCharacter = screenTextValues[screenTextValues.length - 2];
+
+            if(charArray.includes(secondToLastCharacter)){
+                tempString += secondToLastCharacter;
+            }
+            else{
+                tempString = "";
+            }
+
             slicedString = screenTextValues.slice(0, -1);
 
             if (slicedString == ""){
@@ -59,12 +70,17 @@ function updateScreen(buttonValue){
             let secondToLastCharIndex = tempString.length - 2;
             let secondToLastChar = tempString[secondToLastCharIndex];
 
-            let charArray = ["÷", "×", "−", "+", "."];
+            let screenTextValuesLastIndex = screenTextValues.length - 1;
+            let screenTextValuesLastChar = screenTextValues[screenTextValuesLastIndex];
 
             if (charArray.includes(tempStringLastChar) && tempStringLastCharIndex == lastCharIndex && 
                 charArray.includes(secondToLastChar)){
                 
                 buttonValue = "";
+            }
+            
+            if (charArray2.includes(screenTextValuesLastChar) && tempStringLastChar == "−"){
+                buttonValue = tempStringLastChar;
             }
 
             screenTextValues += buttonValue;
