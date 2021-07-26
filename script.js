@@ -23,6 +23,11 @@ function getInnerText(button){
     updateScreen(buttonValue);
 }
 
+function errorMessage(){
+    screenTextValues = "Error";
+    screenText.innerText = screenTextValues;
+}
+
 function updateScreen(buttonValue){
 
     switch (buttonValue){
@@ -36,6 +41,14 @@ function updateScreen(buttonValue){
 
         case "C":
             let secondToLastCharacter = screenTextValues[screenTextValues.length - 2];
+
+            if(screenTextValues == "Error" || screenTextValues == "Infinity"){
+                tempString = "";
+                screenTextValues = "|";
+                screenText.innerText = screenTextValues;
+                toggleBlinkingEffect();
+                break;
+            }
 
             if(charArray.includes(secondToLastCharacter)){
                 tempString += secondToLastCharacter;
@@ -56,20 +69,31 @@ function updateScreen(buttonValue){
             break;
         
         case "=":
-            let newExpression = screenTextValues.replace(/×/g, "*");
-            newExpression = newExpression.replace(/÷/g, "/");
-            newExpression = newExpression.replace(/−/g, "-");
+            try{
+                let regex = /(\*%|\/%|\+%|-%)/g;
+                let newExpression = screenTextValues.replace(/×/g, "*");
+                newExpression = newExpression.replace(/÷/g, "/");
+                newExpression = newExpression.replace(/−/g, "-");
 
-            let newExpressionLastChar = newExpression[newExpression.length - 1];
-            
-            if(newExpressionLastChar == "%"){
-                newExpression = newExpression.replace(/%/g, "*0.01*");
-                newExpression = newExpression.replace(/\*\*/g, "*");
-                newExpression = newExpression.slice(0, newExpression.length - 1);
+                if(regex.test(newExpression)){
+                    errorMessage();
+                    break;
+                }
+
+                let newExpressionLastChar = newExpression[newExpression.length - 1];
+                
+                if(newExpressionLastChar == "%"){
+                    newExpression = newExpression.replace(/%/g, "*0.01*");
+                    newExpression = newExpression.replace(/\*\*/g, "*");
+                    newExpression = newExpression.slice(0, newExpression.length - 1);
+                }
+
+                screenTextValues = `${eval(newExpression)}`;
+                screenText.innerText = screenTextValues;
             }
-
-            screenTextValues = `${eval(newExpression)}`;
-            screenText.innerText = screenTextValues;
+            catch{
+                errorMessage();
+            }
             break;
 
         default:
@@ -77,7 +101,13 @@ function updateScreen(buttonValue){
             if (screenTextValues == "|"){
                 screenTextValues = "";
             }
+            
+            if (screenTextValues == "Error" || screenTextValues == "Infinity"){
+                screenTextValues = "";
+            }
 
+            //Start 
+            //This section of code prevents certain operators from being typed in succession
             tempString += buttonValue;
         
             let lastCharIndex = tempString.length - 1;
@@ -99,6 +129,7 @@ function updateScreen(buttonValue){
             if (charArray2.includes(screenTextValuesLastChar) && tempStringLastChar == "−"){
                 buttonValue = tempStringLastChar;
             }
+            //End
 
             screenTextValues += buttonValue;
             screenText.innerText = screenTextValues;
