@@ -14,6 +14,9 @@ body {
       -ms-flex-align: center;
           align-items: center;
   font-size: 2rem;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#db00b6), color-stop(#e500a4), to(#f20089));
+  background-image: linear-gradient(to bottom right, #db00b6, #e500a4, #f20089);
+  color: #fff;
 }
 
 body, .screen, .button {
@@ -22,8 +25,12 @@ body, .screen, .button {
   display: flex;
 }
 
+.screen, .button {
+  border-radius: 4px;
+}
+
 .container {
-  background: #0000ff;
+  background: #3c096c;
   max-height: 600px;
   min-height: 600px;
   height: 600px;
@@ -31,6 +38,7 @@ body, .screen, .button {
   min-width: 400px;
   width: 400px;
   padding: 0.5em;
+  border-radius: 8px;
 }
 
 .container .inner-container {
@@ -43,6 +51,18 @@ body, .screen, .button {
   row-gap: 0.1em;
   width: 100%;
   height: 100%;
+}
+
+.container .inner-container .text {
+  font-family: "Rubik", sans-serif;
+}
+
+.container .inner-container .special-color {
+  color: #ff9e00;
+}
+
+.container .inner-container .special-color:hover {
+  color: #000;
 }
 
 .container .screen {
@@ -59,10 +79,15 @@ body, .screen, .button {
           justify-content: flex-end;
   overflow: hidden;
   font-size: 2.5rem;
+  max-width: 367.98px;
+  color: #000;
 }
 
 .container .screen .screen-text {
-  margin-right: 0.4em;
+  padding-right: 0.4em;
+  max-width: 367.98px;
+  overflow-x: auto;
+  font-family: "Rubik", sans-serif;
 }
 
 .container .screen .insertion-point {
@@ -72,11 +97,10 @@ body, .screen, .button {
           animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-  font-weight: 700;
 }
 
 .container .button {
-  background: #ffa500;
+  background: #7b2cbf;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -86,7 +110,7 @@ body, .screen, .button {
 }
 
 .container .button:hover {
-  background: #d39523;
+  background: #ff7900;
 }
 
 .container .plus-button {

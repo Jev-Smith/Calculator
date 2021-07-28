@@ -6,14 +6,20 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    background-image: linear-gradient(to bottom right,#db00b6,#e500a4, #f20089);
+    color: #fff;
 }
 
 body, .screen, .button{
     display: flex;
 }
 
+.screen, .button{
+    border-radius: 4px;
+}
+
 .container{
-    background: #0000ff;
+    background: #3c096c;
     max-height: $height;
     min-height: $height;
     height: $height;
@@ -21,6 +27,7 @@ body, .screen, .button{
     min-width: $width;
     width: $width;
     padding: $spacing;
+    border-radius: 8px;
 
     .inner-container{
         display: grid;
@@ -29,36 +36,53 @@ body, .screen, .button{
         row-gap: $gap;
         width: 100%;
         height: 100%;
+
+        .text{
+            font-family: $font;
+        }
+
+        .special-color{
+            color: #ff9e00;
+        }
+
+        .special-color:hover{
+            color: $blackFont;
+        }
     }
 
     .screen{
         background: #fff;
         grid-column: 1 / span 4;
-        margin-bottom: $margin-spacing; 
+        margin-bottom: $spacing2; 
         align-items: center;
         justify-content: flex-end;
         overflow: hidden; 
         font-size: 2.5rem;
+        max-width: 367.98px;
+        color: $blackFont;
 
         .screen-text{
-            margin-right: $margin-spacing;
+            padding-right: $spacing2;
+            max-width: 367.98px;
+            overflow-x: auto;
+            font-family: $font;
+            
         }
 
         .insertion-point{
             animation-name: blink;
             animation-duration: 1s;
             animation-iteration-count: infinite;
-            font-weight: 700;
         }
     }
 
     .button{
-        background: #ffa500;
+        background: #7b2cbf;
         justify-content: center;
         align-items: center;
 
         &:hover{
-            background: #d39523;
+            background: #ff7900;
         }
     }
 
