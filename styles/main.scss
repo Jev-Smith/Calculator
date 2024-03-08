@@ -61,16 +61,16 @@ body, .screen, .button{
         max-width: 367.98px;
         color: $blackFont;
 
-        &:focus{
-            outline: none;
-        }
-
         .screen-text{
             padding-right: $spacing2;
             max-width: 367.98px;
             overflow-x: auto;
             font-family: $font;
+            caret-color: transparent;
             
+            &:focus {
+                    outline: none;
+                }
         }
 
         .insertion-point{
